@@ -9,14 +9,16 @@
   <link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.css">
   <link rel="stylesheet" href="style.css" type="text/css">
 </head>
-<body>
+<body :class="{ 'modal-open' : modalOpen}">
     <div id="toolbar">
-      <img class="icon" src="logo.png">
-      <h1>vuebnb</h1>
+        <img class="icon" src="logo.png">
+        <h1>vuebnb</h1>
     </div>
     <div id="app">
         <div class="header">
-            <div class="header-img" :style="headerImageStyle"></div>
+            <div class="header-img" :style="headerImageStyle" @click="modalOpen = true">
+                <button class="view-photos" type="button">View Photos</button>
+            </div>
         </div><!-- ./end header-->
         <div class="container">
             <div class="heading">
@@ -47,11 +49,17 @@
                 </div><!-- ./end list-->
             </div><!-- ./end about-->
         </div><!-- ./end container-->
+        <div id="modal" :class="{ show : modalOpen}" @keyup.esc="modalOpen = false">
+            <button v-on:click="modalOpen = false" class="modal-close">
+                &times;
+            </button>
+            <div class="modal-content"><img src="sample/header.jpg" /></div>
+        </div>
     </div><!-- ./end #app-->
-    </body>
-        <script src="node_modules/vue/dist/vue.js"></script>
-        <script src="sample/data.js"></script>
-        <script src="app.js"></script>
+
+    <script src="node_modules/vue/dist/vue.js"></script>
+    <script src="sample/data.js"></script>
+    <script src="app.js"></script>
 </body>
 </html>
 
